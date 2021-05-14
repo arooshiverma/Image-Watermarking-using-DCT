@@ -1,5 +1,5 @@
 # Image-Watermarking-using-DCT
-Uses Discrete Cosine Transform(DCT) only. This is an invisible watermarking scheme. The algorithm also computes Normalized correlation between the actual and extracted watermark images. We also test a variety of geometric attacks.
+Uses Discrete Cosine Transform(DCT) only. This is an invisible watermarking scheme. The algorithm also computes Normalized correlation between the actual and extracted watermark images. We also test a variety of geometric and signal-based attacks.
 
 ## Embedding Watermark
 The function watermark_image(img, wm) embeds the watermark wm into image img.
@@ -46,3 +46,16 @@ The watermark extraction algorithm:
 ## Note
 * Why the division by fact? We use python for the computation of DCT. Then we make changes to this DCT and compute final = IDCT(DCT). Right now, the final contains floating-point values. But when we save it as an image, the floating-point numbers are converted into integers. Thus, when we read the image during extraction, the computed DCT has slight variations. To solve this, we divide the DCT coefficient by fact, change it to even/odd as required, and multiply by fact. Thus, now DCT values can have a variance from -fact/2 to +fact/2, and our result won’t change.
 * It is pretty easy to attack this algorithm. A person can change all block’s dct[0][0]’s value from odd to even or even to odd, randomly. This would essentially ruin the watermark.
+
+
+## Attacks
+### Geometric attacks
+* Scaling to half
+* Scaling to bigger
+* Cutting 100 rows
+### Signal-based attacks
+* Average filter
+* Median filter
+* Gaussian noise 
+* Salt & Pepper noise
+* Speckle Noise
